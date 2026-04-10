@@ -22,7 +22,7 @@ A lightweight browser helper for Pokemon Brilliant Diamond / Shining Pearl.
 ## Run
 
 ```bash
-cd /Users/roelly.wang/pokemon-bdsp-helper
+cd pokemon-bdsp-helper
 python3 -m http.server 4173
 ```
 
