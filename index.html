@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BDSP Pokemon Helper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css?v=20260410h" />
+  </head>
+  <body>
+    <div class="background-glow glow-left"></div>
+    <div class="background-glow glow-right"></div>
+
+    <main class="shell">
+      <section class="hero">
+        <p class="eyebrow">Pokemon Brilliant Diamond / Shining Pearl</p>
+        <h1>BDSP 寶可夢戰鬥小幫手</h1>
+        <p class="hero-copy">
+          輸入自己的寶可夢，查看推薦性格、配招與進化條件；輸入對手寶可夢，立刻查各屬性招式打上去的倍率。
+        </p>
+        <div class="hero-badges">
+          <span>支援英文 / 簡中 / 繁中名稱</span>
+          <span>BDSP 版本招式</span>
+          <span>18 種屬性倍率表</span>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="panel panel-primary">
+          <div class="panel-head">
+            <div>
+              <p class="panel-kicker">My Pokemon</p>
+              <h2>推薦性格、配招、進化條件</h2>
+            </div>
+            <span class="panel-tag">BDSP</span>
+          </div>
+
+          <form id="build-form" class="lookup-form">
+            <label for="build-input">輸入寶可夢名稱或全國圖鑑編號</label>
+            <div class="control-row">
+              <div class="control-field">
+                <label for="team-mode">隊伍推薦模式</label>
+                <select id="team-mode" name="teamMode">
+                  <option value="non-legendary">非神獸</option>
+                  <option value="legendary">神獸</option>
+                  <option value="story">通關向</option>
+                  <option value="competitive">對戰向</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-stack">
+              <div class="input-row">
+                <input
+                  id="build-input"
+                  name="pokemon"
+                  type="text"
+                  autocomplete="off"
+                  placeholder="例如：烈咬陸鯊 / Garchomp / #445"
+                />
+                <button type="submit">查推薦</button>
+              </div>
+              <div id="build-suggestions" class="suggestions" aria-live="polite"></div>
+            </div>
+            <p class="hint">
+              會優先使用 BDSP OU 現成推薦；如果查不到，會改用 BDSP 可學招式 + 種族值做啟發式推薦。隊伍模式可切換神獸、非神獸、通關向、對戰向。
+            </p>
+          </form>
+
+          <div id="build-output" class="result-card empty-state">
+            <p>輸入你的寶可夢後，這裡會顯示推薦結果。</p>
+          </div>
+        </article>
+
+        <article class="panel panel-secondary">
+          <div class="panel-head">
+            <div>
+              <p class="panel-kicker">Opponent</p>
+              <h2>對手屬性弱點倍率</h2>
+            </div>
+            <span class="panel-tag">Type Chart</span>
+          </div>
+
+          <form id="matchup-form" class="lookup-form">
+            <label for="matchup-input">輸入對手寶可夢名稱或全國圖鑑編號</label>
+            <div class="input-stack">
+              <div class="input-row">
+                <input
+                  id="matchup-input"
+                  name="opponent"
+                  type="text"
+                  autocomplete="off"
+                  placeholder="例如：波克基斯 / Togekiss / #468"
+                />
+                <button type="submit">查倍率</button>
+              </div>
+              <div id="matchup-suggestions" class="suggestions" aria-live="polite"></div>
+            </div>
+            <p class="hint">會依照對手目前屬性，列出 18 種攻擊屬性對它的實際傷害倍率。</p>
+          </form>
+
+          <div id="matchup-output" class="result-card empty-state">
+            <p>輸入對手寶可夢後，這裡會顯示屬性相剋倍率。</p>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <template id="loading-template">
+      <div class="loading">
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+      </div>
+    </template>
+
+    <script type="module" src="./app.js?v=20260410h"></script>
+  </body>
+</html>
